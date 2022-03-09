@@ -7,8 +7,10 @@
 
     <ImageView
         android:id="@+id/iv_profile_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,6 +20,8 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="user_name"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -28,6 +32,8 @@
         android:id="@+id/tv_tweet_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="This is a really really really long sample tweet."
         app:layout_constraintStart_toEndOf="@+id/iv_profile_image"
         app:layout_constraintTop_toBottomOf="@+id/tv_username" />
