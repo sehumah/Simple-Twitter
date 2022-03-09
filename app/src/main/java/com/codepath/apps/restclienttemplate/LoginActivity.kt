@@ -2,12 +2,15 @@ package com.codepath.apps.restclienttemplate
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import com.codepath.apps.restclienttemplate.models.SampleModel
 import com.codepath.apps.restclienttemplate.models.SampleModelDao
 import com.codepath.oauth.OAuthLoginActionBarActivity
 
+
+private const val TAG = "LoginActivity"
 class LoginActivity : OAuthLoginActionBarActivity<TwitterClient>() {
 
     var sampleModelDao: SampleModelDao? = null
@@ -33,11 +36,13 @@ class LoginActivity : OAuthLoginActionBarActivity<TwitterClient>() {
     override fun onLoginSuccess() {
         // val i = Intent(this, PhotosActivity::class.java)
         // startActivity(i)
+        Log.i(TAG, "Logged in successfully!")
     }
 
     // OAuth authentication flow failed, handle the error
     // i.e Display an error dialog or toast
     override fun onLoginFailure(e: Exception) {
+        Log.i(TAG, "Login failed!")
         e.printStackTrace()
     }
 
