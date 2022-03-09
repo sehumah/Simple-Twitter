@@ -36,19 +36,15 @@ class TwitterClient(context: Context) : OAuthBaseClient(
 
         const val REST_URL = "https://api.twitter.com/1.1/" // base API URL
 
-        const val REST_CONSUMER_KEY =
-            BuildConfig.CONSUMER_KEY // Change this inside apikey.properties
+        const val REST_CONSUMER_KEY = BuildConfig.CONSUMER_KEY // Change this inside apikey.properties
 
-        const val REST_CONSUMER_SECRET =
-            BuildConfig.CONSUMER_SECRET // Change this inside apikey.properties
+        const val REST_CONSUMER_SECRET = BuildConfig.CONSUMER_SECRET // Change this inside apikey.properties
 
         // Landing page to indicate the OAuth flow worked in case Chrome for Android 25+ blocks navigation back to the app.
-        const val FALLBACK_URL =
-            "https://codepath.github.io/android-rest-client-template/success.html"
+        const val FALLBACK_URL = "https://codepath.github.io/android-rest-client-template/success.html"
 
         // See https://developer.chrome.com/multidevice/android/intents
-        const val REST_CALLBACK_URL_TEMPLATE =
-            "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end"
+        const val REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end"
     }
 
     // CHANGE THIS
