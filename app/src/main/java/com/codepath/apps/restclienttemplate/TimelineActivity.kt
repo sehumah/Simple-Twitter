@@ -57,3 +57,5 @@ class TimelineActivity : AppCompatActivity() {
         })
     }
 }
+
+// NOTE: we can now see tweets based on the people we're following
