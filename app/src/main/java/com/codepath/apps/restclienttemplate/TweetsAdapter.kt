@@ -11,7 +11,7 @@ import com.codepath.apps.restclienttemplate.models.Tweet
 
 
 /* turn tweets objects to something that the Recycler view can display */
-class TweetsAdapter (val tweets: List<Tweet>) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>() {
+class TweetsAdapter (private val tweets: List<Tweet>) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>() {
 
     /* responsible for inflating the layout we want to use for each of the items to display in the RecyclerView */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetsAdapter.ViewHolder {
@@ -40,8 +40,8 @@ class TweetsAdapter (val tweets: List<Tweet>) : RecyclerView.Adapter<TweetsAdapt
 
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivProfileImage: ImageView = itemView.findViewById<ImageView>(R.id.iv_profile_image)
-        val tvUsername: TextView = itemView.findViewById<TextView>(R.id.tv_username)
-        val tweetText: TextView = itemView.findViewById<TextView>(R.id.tv_tweet_body)
+        val ivProfileImage: ImageView = itemView.findViewById(R.id.iv_profile_image)
+        val tvUsername: TextView = itemView.findViewById(R.id.tv_username)
+        val tweetText: TextView = itemView.findViewById(R.id.tv_tweet_body)
     }
 }
