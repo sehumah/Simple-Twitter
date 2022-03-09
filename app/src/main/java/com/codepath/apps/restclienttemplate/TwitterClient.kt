@@ -19,7 +19,7 @@ import com.github.scribejava.core.builder.api.BaseApi
  * NOTE: You may want to rename this object based on the service i.e TwitterClient or FlickrClient
  *
  */
-class RestClient(context: Context) : OAuthBaseClient(
+class TwitterClient(context: Context) : OAuthBaseClient(
     context, REST_API_INSTANCE, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET,
     null, String.format(
         REST_CALLBACK_URL_TEMPLATE,
