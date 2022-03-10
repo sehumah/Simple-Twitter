@@ -31,6 +31,7 @@ class TweetsAdapter (private val tweets: List<Tweet>) : RecyclerView.Adapter<Twe
         // Set specific view items based on the specific tweet. Set item views based on views and data model
         holder.tvUsername.text = tweet.user?.name  // username might be null
         holder.tweetText.text = tweet.tweetText
+        holder.tvTimestamp.text = tweet.getFormattedTimestamp()
         Glide.with(holder.itemView).load(tweet.user?.publicImageURL).into(holder.ivProfileImage)
     }
 
