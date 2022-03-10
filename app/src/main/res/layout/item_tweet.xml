@@ -50,7 +50,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Timestamp: 8m"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_tweet_body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
