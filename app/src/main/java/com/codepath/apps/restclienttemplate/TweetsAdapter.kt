@@ -25,11 +25,11 @@ class TweetsAdapter (private val tweets: List<Tweet>) : RecyclerView.Adapter<Twe
 
     /* in charge of populating data into the item through the ViewHolder */
     override fun onBindViewHolder(holder: TweetsAdapter.ViewHolder, position: Int) {
-        // 1st. get the tweet. Get the data model based on the position
+        // 1st. get the tweet that this specific item needs to inflate. Get the data model based on the position
         val tweet: Tweet = tweets.get(position)
 
         // Set specific view items based on the specific tweet. Set item views based on views and data model
-        holder.tvUsername.text = tweet.user?.name  // user's name might be null
+        holder.tvUsername.text = tweet.user?.name  // username might be null
         holder.tweetText.text = tweet.tweetText
         Glide.with(holder.itemView).load(tweet.user?.publicImageURL).into(holder.ivProfileImage)
     }
