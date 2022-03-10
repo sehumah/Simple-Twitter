@@ -40,6 +40,7 @@ GIF created with [Peek](https://github.com/phw/peek).
 ## Notes
 
 Describe any challenges encountered while building the app.
+1. The 15 API calls per every 15 minutes created a little challenge as I often updated things in the layout xml files and had to keep running to see the changes I made. At some point, nothing was showing on my timeline and looking at the log messages, I noticed the onFailure method returned an error status code 429, which meant I was sending in too many requests.
 
 ## Open-source libraries used
 
