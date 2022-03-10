@@ -10,7 +10,7 @@ class Tweet {
     var user: User? = null  // user who created the tweet
 
     companion object {
-        fun parseJSON (jsonObject: JSONObject) : Tweet {
+        private fun parseJSON (jsonObject: JSONObject) : Tweet {
             val tweet = Tweet()
             tweet.createdAt = jsonObject.getString("created_at")
             tweet.tweetText = jsonObject.getString("text")
@@ -28,7 +28,7 @@ class Tweet {
         }
     }
 
-    private fun getFormattedTimestamp (createdAt: String) : String {
+    fun getFormattedTimestamp () : String {
         // String formattedTime = TimeFormatter.getTimeDifference(String dateString);
         return TimeFormatter.getTimeDifference(createdAt)
     }
