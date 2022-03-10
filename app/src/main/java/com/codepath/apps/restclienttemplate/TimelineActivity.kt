@@ -48,11 +48,11 @@ class TimelineActivity : AppCompatActivity() {
                     Log.e(TAG, "JSON Exception: $e")
                 }
 
-                Log.i(TAG, "success populating home timeline. JSON object: $json")
+                Log.i(TAG, "Success populating home timeline. JSON object: $json")
             }
 
             override fun onFailure(statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?) {
-                Log.i(TAG, "failed to populate home timeline. Status code: $statusCode")
+                Log.i(TAG, "Failed to populate home timeline. Status code: $statusCode")
             }
         })
     }
