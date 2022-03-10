@@ -27,4 +27,9 @@ class Tweet {
             return tweets
         }
     }
+
+    private fun getFormattedTimestamp (createdAt: String) : String {
+        // String formattedTime = TimeFormatter.getTimeDifference(String dateString);
+        return TimeFormatter.getTimeDifference(createdAt)
+    }
 }
