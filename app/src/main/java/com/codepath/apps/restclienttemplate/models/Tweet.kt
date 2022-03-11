@@ -4,7 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class Tweet {
-    var tweetId: Int = 0
+    var tweetId: String = ""
     var tweetText: String = ""
     var createdAt: String = ""
     var user: User? = null  // user who created the tweet
@@ -12,7 +12,7 @@ class Tweet {
     companion object {
         private fun parseJSON (jsonObject: JSONObject) : Tweet {
             val tweet = Tweet()
-            tweet.tweetId = jsonObject.getInt("id")
+            tweet.tweetId = jsonObject.getString("id_str")
             tweet.createdAt = jsonObject.getString("created_at")
             tweet.tweetText = jsonObject.getString("text")
             tweet.user = User.parseJSON(jsonObject.getJSONObject("user"))
