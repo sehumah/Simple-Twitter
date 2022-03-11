@@ -128,6 +128,7 @@ class TimelineActivity : AppCompatActivity() {
                     val newListOfTweetsRetrieved = Tweet.fromJSONArray(jsonArray)
                     tweets.addAll(newListOfTweetsRetrieved)
                     adapter.notifyDataSetChanged()
+                    currentMaxId = newListOfTweetsRetrieved[newListOfTweetsRetrieved.size-1].tweetId
                     // adapter.notifyItemRangeInserted(0, tweets.size)
                     scrollListener.resetState()  // reset endless scroll listener when performing a new search
                 } catch (e: JSONException) {
