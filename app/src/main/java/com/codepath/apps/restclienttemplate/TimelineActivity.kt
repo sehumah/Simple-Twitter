@@ -15,6 +15,7 @@ import EndlessRecyclerViewScrollListener
 
 
 private const val TAG = "TimelineActivity"
+
 class TimelineActivity : AppCompatActivity() {
 
     private lateinit var client: TwitterClient  // declare client variable
@@ -25,6 +26,8 @@ class TimelineActivity : AppCompatActivity() {
     private lateinit var swipeContainer: SwipeRefreshLayout
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener  // declare variable to listen for scrolls
     private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var handler: JsonHttpResponseHandler
+    private lateinit var currentMaxId: String
 
     private val tweets = ArrayList<Tweet>() // hold list of tweets to hold all the tweets we get from the API call
 
@@ -39,7 +42,7 @@ class TimelineActivity : AppCompatActivity() {
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener {
             populateHomeTimeline()
-            Log.i(TAG, "Refresh listener detected a refresh! Refreshing timeline!")
+            Log.i(TAG, "Refresh detected...Refreshing timeline!")
         }
 
         // Configure refreshing colors for SwipeRefreshLayout
@@ -47,32 +50,38 @@ class TimelineActivity : AppCompatActivity() {
             android.R.color.holo_blue_bright,
             android.R.color.holo_green_light,
             android.R.color.holo_orange_light,
-            android.R.color.holo_red_light);
+            android.R.color.holo_red_light
+        );
 
         rvTweets = findViewById(R.id.rv_tweets)  // get the RecyclerView
         adapter = TweetsAdapter(tweets)  // initialize adapter
         rvTweets.layoutManager = LinearLayoutManager(this)  // give RecyclerView a LayoutManager
         rvTweets.adapter = adapter  // set the adapter for the RecyclerView
-        populateHomeTimeline()
 
         /* Below code for infinite pagination feature */
         // Retain an instance so that you can call `resetState()` for fresh searches
         linearLayoutManager = rvTweets.layoutManager as LinearLayoutManager
-        scrollListener = object: EndlessRecyclerViewScrollListener(linearLayoutManager) {
-            override fun onLoadMore (page: Int, totalItemsCount: Int, view: RecyclerView) {
+        scrollListener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to the bottom of the list
-                populateHomeTimeline()
+                Log.i(TAG, "inside onLoadMore! currentMaxId is: ${currentMaxId.toLong()}") // remove later
+
+
+                getNextBatchOfTweets()  // send out another network request to get next batch of tweets
+
                 Log.i(TAG, "Inside onLoadMore! Loading more tweets...")
             }
         }
         rvTweets.addOnScrollListener(scrollListener)  // add scroll listener to RecyclerView
 
-
+        // call populate home timeline after everything's been initialized
+        populateHomeTimeline()
     }
 
-    private fun populateHomeTimeline () {
-        client.getHomeTimeline(object : JsonHttpResponseHandler () {
+
+    private fun populateHomeTimeline() {
+        client.getHomeTimeline(object : JsonHttpResponseHandler() {
 
             override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
                 val jsonArray = json.jsonArray  // get json array from response
@@ -82,18 +91,61 @@ class TimelineActivity : AppCompatActivity() {
                     val listOfTweetsRetrieved = Tweet.fromJSONArray(jsonArray)  // parse jsonArray and make list of tweets
                     tweets.addAll(listOfTweetsRetrieved)  // add it to our list of original tweets
                     adapter.notifyDataSetChanged()  // notify the adapter that things have changed
-                    // Now we call setRefreshing(false) to signal refresh has finished. And to stop showing the refreshing icon
-                    swipeContainer.setRefreshing(false)
+                    swipeContainer.setRefreshing(false)  // Now we call setRefreshing(false) to signal refresh has finished so it stops showing the refreshing icon
+
+                    /*** Start of testing ***/
+                    // TODO: store the currentMaxId and somehow get it to getNextBatchOfTweets() inside onLoadMore()
+                     currentMaxId = listOfTweetsRetrieved[listOfTweetsRetrieved.size-1].tweetId
+                     Log.i(TAG, "inside getHomeTimeline.onSuccess. currentMaxId is: $currentMaxId")
+                    /*** End of testing ***/
+
                 } catch (e: JSONException) {
                     Log.e(TAG, "JSON Exception: $e")
                 }
                 Log.i(TAG, "Success populating home timeline. JSON object: $json")
             }
 
-            override fun onFailure(statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?) {
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                response: String?,
+                throwable: Throwable?
+            ) {
                 Log.i(TAG, "Failed to populate home timeline. Status code: $statusCode")
             }
         })
+    }
+
+
+    /***/
+    private fun getNextBatchOfTweets() {
+        client.getNextBatchOfTweets(object : JsonHttpResponseHandler() {
+
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                val jsonArray = json.jsonArray
+
+                try {
+                    val newListOfTweetsRetrieved = Tweet.fromJSONArray(jsonArray)
+                    tweets.addAll(newListOfTweetsRetrieved)
+                    adapter.notifyDataSetChanged()
+                    // adapter.notifyItemRangeInserted(0, tweets.size)
+                    scrollListener.resetState()  // reset endless scroll listener when performing a new search
+                } catch (e: JSONException) {
+                    Log.e(TAG, "JSON Exception: $e")
+                }
+                Log.i(TAG, "inside getNextBatchOfTweets.onSuccess. JSON object: $json")
+                Log.i(TAG, "inside getNextBatchOfTweets.onSuccess. currentMaxId is $currentMaxId")
+            }
+
+            override fun onFailure(
+                statusCode: Int,
+                headers: Headers?,
+                response: String?,
+                throwable: Throwable?
+            ) {
+                Log.i(TAG, "inside getNextBatchOfTweets.onFailure. Failed to get next batch of tweets. Status code: $statusCode")
+            }
+        }, currentMaxId.toLong()-1)
     }
 }
 
