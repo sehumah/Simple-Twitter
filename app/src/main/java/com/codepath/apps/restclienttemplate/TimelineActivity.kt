@@ -11,6 +11,7 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.github.scribejava.apis.TwitterApi
 import okhttp3.Headers
 import org.json.JSONException
+import EndlessRecyclerViewScrollListener
 
 
 private const val TAG = "TimelineActivity"
@@ -22,6 +23,8 @@ class TimelineActivity : AppCompatActivity() {
     private lateinit var adapter: TweetsAdapter
 
     private lateinit var swipeContainer: SwipeRefreshLayout
+    private lateinit var scrollListener: EndlessRecyclerViewScrollListener  // declare variable to listen for scrolls
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     private val tweets = ArrayList<Tweet>() // hold list of tweets to hold all the tweets we get from the API call
 
@@ -51,6 +54,20 @@ class TimelineActivity : AppCompatActivity() {
         rvTweets.layoutManager = LinearLayoutManager(this)  // give RecyclerView a LayoutManager
         rvTweets.adapter = adapter  // set the adapter for the RecyclerView
         populateHomeTimeline()
+
+        /* Below code for infinite pagination feature */
+        // Retain an instance so that you can call `resetState()` for fresh searches
+        linearLayoutManager = rvTweets.layoutManager as LinearLayoutManager
+        scrollListener = object: EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            override fun onLoadMore (page: Int, totalItemsCount: Int, view: RecyclerView) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                populateHomeTimeline()
+                Log.i(TAG, "Inside onLoadMore! Loading more tweets...")
+            }
+        }
+        rvTweets.addOnScrollListener(scrollListener)  // add scroll listener to RecyclerView
+
 
     }
 
