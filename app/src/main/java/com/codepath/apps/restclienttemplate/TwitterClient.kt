@@ -7,6 +7,7 @@ import com.codepath.oauth.OAuthBaseClient
 import com.github.scribejava.apis.FlickrApi
 import com.github.scribejava.apis.TwitterApi
 import com.github.scribejava.core.builder.api.BaseApi
+import kotlin.math.max
 
 /*
  *
@@ -31,6 +32,8 @@ class TwitterClient(context: Context) : OAuthBaseClient(
     )
 ) {
 
+    private var apiURLPath = "statuses/home_timeline.json"
+
     companion object {
         val REST_API_INSTANCE = TwitterApi.instance()
 
@@ -47,16 +50,25 @@ class TwitterClient(context: Context) : OAuthBaseClient(
         const val REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end"
     }
 
-    // DEFINE METHODS for different API endpoints here
+    /* DEFINE METHODS for different API endpoints here */
+    // define method to get the initial home timeline
     fun getHomeTimeline(handler: JsonHttpResponseHandler) {
-        val apiUrl =
-            getApiUrl("statuses/home_timeline.json")
+        val apiUrl = getApiUrl(apiURLPath)
 
         // Can specify query string params directly or through RequestParams.
         val params = RequestParams()
         params.put("count", "25")
         params.put("since_id", 1)
         client.get(apiUrl, params, handler)
+    }
+
+    // define method to get next batch of tweets after reaching the end of the RecyclerView
+    fun getNextBatchOfTweets (handler: JsonHttpResponseHandler, maxId: Long) {
+        val apiURL: String = getApiUrl(apiURLPath)
+        val params = RequestParams()
+        params.put("count", 25)
+        params.put("max_id", maxId)
+        client.get(apiURL, params, handler)
     }
 
     /* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
