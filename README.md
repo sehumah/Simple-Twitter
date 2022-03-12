@@ -2,7 +2,7 @@
 
 **Simple-Twitter** is an android app that allows a user to view his Twitter timeline. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-Time spent: **35** hours spent in total
+Time spent: **43** hours spent in total
 
 ## User Stories
 
