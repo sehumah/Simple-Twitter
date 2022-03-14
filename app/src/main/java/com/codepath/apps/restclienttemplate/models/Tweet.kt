@@ -5,9 +5,11 @@ import org.json.JSONObject
 
 class Tweet {
     var tweetId: String = ""
-    var tweetText: String = ""
-
     var createdAt: String = ""
+    var tweetText: String = ""
+    var replyCount: Int = 0
+    var retweetCount: Int = 0
+    var favoritesCount: Int = 0
     var user: User? = null  // user who created the tweet
 
     companion object {
@@ -16,6 +18,9 @@ class Tweet {
             tweet.tweetId = jsonObject.getString("id_str")
             tweet.createdAt = jsonObject.getString("created_at")
             tweet.tweetText = jsonObject.getString("text")
+            // tweet.replyCount = jsonObject.getInt("reply_count")
+            tweet.retweetCount = jsonObject.getInt("retweet_count")
+            tweet.favoritesCount = jsonObject.getInt("favorite_count")
             tweet.user = User.parseJSON(jsonObject.getJSONObject("user"))
             return tweet
         }
