@@ -13,6 +13,17 @@ import com.codepath.apps.restclienttemplate.models.Tweet
 /* turn tweets objects to something that the Recycler view can display */
 class TweetsAdapter (private val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>() {
 
+    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val ivProfileImage: ImageView = itemView.findViewById(R.id.iv_profile_image)
+        val tvUsername: TextView = itemView.findViewById(R.id.tv_username)
+        val tvScreenname: TextView = itemView.findViewById(R.id.tv_screen_name)
+        val tvTimestamp: TextView = itemView.findViewById(R.id.tv_timestamp)
+        val tvTweetText: TextView = itemView.findViewById(R.id.tv_tweet_body)
+        // val tvReplyCount: TextView = itemView.findViewById(R.id.tv_reply_count)
+        val tvRetweetCount: TextView = itemView.findViewById(R.id.tv_retweet_count)
+        val tvFavoriteCount: TextView = itemView.findViewById(R.id.tv_favorite_count)
+    }
+
     /* responsible for inflating the layout we want to use for each of the items to display in the RecyclerView */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetsAdapter.ViewHolder {
         val context = parent.context
@@ -30,8 +41,12 @@ class TweetsAdapter (private val tweets: ArrayList<Tweet>) : RecyclerView.Adapte
 
         // Set specific view items based on the specific tweet. Set item views based on views and data model
         holder.tvUsername.text = tweet.user?.name  // username might be null
-        holder.tweetText.text = tweet.tweetText
+        holder.tvScreenname.text = "@${tweet.user?.screenName}"
+        holder.tvTweetText.text = tweet.tweetText
         holder.tvTimestamp.text = tweet.getFormattedTimestamp()
+        // holder.tvReplyCount.text = tweet.replyCount.toString()
+        holder.tvRetweetCount.text = tweet.retweetCount.toString()
+        holder.tvFavoriteCount.text = tweet.favoritesCount.toString()
         Glide.with(holder.itemView).load(tweet.user?.publicImageURL).into(holder.ivProfileImage)
     }
 
@@ -39,7 +54,7 @@ class TweetsAdapter (private val tweets: ArrayList<Tweet>) : RecyclerView.Adapte
         return tweets.size
     }
 
-    /* pull to refresh functionality */
+    /* below code for pull to refresh functionality */
 
     // Clean all elements of the recycler
     fun clear() {
@@ -53,10 +68,4 @@ class TweetsAdapter (private val tweets: ArrayList<Tweet>) : RecyclerView.Adapte
         notifyDataSetChanged()
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivProfileImage: ImageView = itemView.findViewById(R.id.iv_profile_image)
-        val tvUsername: TextView = itemView.findViewById(R.id.tv_username)
-        val tvTimestamp: TextView = itemView.findViewById(R.id.tv_timestamp)
-        val tweetText: TextView = itemView.findViewById(R.id.tv_tweet_body)
-    }
 }
