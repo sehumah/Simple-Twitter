@@ -6,6 +6,7 @@ import org.json.JSONObject
 class Tweet {
     var tweetId: String = ""
     var tweetText: String = ""
+
     var createdAt: String = ""
     var user: User? = null  // user who created the tweet
 
