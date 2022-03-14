@@ -26,7 +26,6 @@ class TimelineActivity : AppCompatActivity() {
     private lateinit var swipeContainer: SwipeRefreshLayout
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener  // declare variable to listen for scrolls
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var handler: JsonHttpResponseHandler
     private lateinit var currentMaxId: String
 
     private val tweets = ArrayList<Tweet>() // hold list of tweets to hold all the tweets we get from the API call
@@ -66,17 +65,12 @@ class TimelineActivity : AppCompatActivity() {
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to the bottom of the list
                 Log.i(TAG, "inside onLoadMore! currentMaxId is: ${currentMaxId.toLong()}") // remove later
-
-
                 getNextBatchOfTweets()  // send out another network request to get next batch of tweets
-
                 Log.i(TAG, "Inside onLoadMore! Loading more tweets...")
             }
         }
         rvTweets.addOnScrollListener(scrollListener)  // add scroll listener to RecyclerView
-
-        // call populate home timeline after everything's been initialized
-        populateHomeTimeline()
+        populateHomeTimeline()  // call populate home timeline after everything's been initialized
     }
 
 
