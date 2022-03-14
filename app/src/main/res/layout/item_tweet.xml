@@ -25,11 +25,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
         android:text="username"
         android:textSize="15dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_tweet_body"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_image"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_screen_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="8dp"
+        android:text="screenname"
+        app:layout_constraintBottom_toTopOf="@+id/tv_tweet_body"
+        app:layout_constraintStart_toEndOf="@+id/tv_username"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tv_timestamp"
@@ -80,7 +94,7 @@
         android:id="@+id/tv_reply_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="000"
+        android:text="0"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -104,7 +118,7 @@
         android:id="@+id/tv_retweet_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="000"
+        android:text="0"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
@@ -128,7 +142,7 @@
         android:id="@+id/tv_favorite_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="000"
+        android:text="0"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
