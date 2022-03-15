@@ -3,8 +3,6 @@ package com.codepath.apps.restclienttemplate.models
 import org.json.JSONObject
 
 class User {
-
-    var userId: Int = 0
     var name: String = ""
     var screenName: String = ""
     var location: String = ""
