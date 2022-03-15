@@ -53,7 +53,7 @@ class TimelineActivity : AppCompatActivity() {
         );
 
         rvTweets = findViewById(R.id.rv_tweets)  // get the RecyclerView
-        adapter = TweetsAdapter(tweets)  // initialize adapter
+        adapter = TweetsAdapter(this, tweets)  // initialize adapter
         rvTweets.layoutManager = LinearLayoutManager(this)  // give RecyclerView a LayoutManager
         rvTweets.adapter = adapter  // set the adapter for the RecyclerView
 
