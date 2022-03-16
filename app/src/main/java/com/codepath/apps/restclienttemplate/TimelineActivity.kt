@@ -14,6 +14,7 @@ import org.json.JSONException
 import EndlessRecyclerViewScrollListener
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 
 
 private const val TAG = "TimelineActivity"
@@ -86,6 +87,9 @@ class TimelineActivity : AppCompatActivity() {
 
     // handles clicks on menu item
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.compose) {
+            Toast.makeText(this, "Compose Button Clicked!", Toast.LENGTH_SHORT).show()
+        }
         return super.onOptionsItemSelected(item)
     }
 
