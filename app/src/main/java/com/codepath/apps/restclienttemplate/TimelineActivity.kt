@@ -98,7 +98,21 @@ class TimelineActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // this method is then called when the user returns from ComposeActivity screen
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            // 1. get the data from the ComposeActivity intent (tweet)
+            val tweet = data?.getParcelableExtra("tweet") as Tweet  // use safe call (?) because sometimes, data is empty
 
+            // 2. update the timeline
+            tweets.add(0, tweet)  // modify the data source of the tweet
+            adapter.notifyItemInserted(0)  // update the adapter
+            rvTweets.smoothScrollToPosition(0)  // automatically scroll up so user doesn't have to scroll to see their tweet
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    // define function to populate the timeline
     private fun populateHomeTimeline() {
         client.getHomeTimeline(object : JsonHttpResponseHandler() {
 
@@ -136,7 +150,7 @@ class TimelineActivity : AppCompatActivity() {
     }
 
 
-    /***/
+    // define function to retrieve more tweets as the user get to the bottom of the screen
     private fun getNextBatchOfTweets() {
         client.getNextBatchOfTweets(object : JsonHttpResponseHandler() {
 
