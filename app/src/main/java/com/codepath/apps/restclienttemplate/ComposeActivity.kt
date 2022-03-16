@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -53,7 +54,13 @@ class ComposeActivity : AppCompatActivity() {
                 client.publishTweetToTimeline(tweetText, object: JsonHttpResponseHandler() {
                     override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
                         // TODO: "send the tweet back to TimelineActivity to show it on the timeline"
-                        val tweet = Tweet.fromJSONArray(json.jsonArray)
+                        val tweet = Tweet.parseJSON(json.jsonObject)
+                        // parse the tweet to TimelineActivity
+                        val intent = Intent()
+                        intent.putExtra("tweet", tweet)
+                        setResult(RESULT_OK, intent)  // set the result to say whether things are okay or not
+                        finish()  // close the ComposeActivity so that we end up back in the TimelineActivity
+
                         Log.i(TAG, "Successfully published tweet!")
                     }
 
