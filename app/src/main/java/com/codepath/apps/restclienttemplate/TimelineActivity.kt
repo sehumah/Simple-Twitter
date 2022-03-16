@@ -19,6 +19,7 @@ import android.widget.Toast
 
 
 private const val TAG = "TimelineActivity"
+private const val REQUEST_CODE = 100
 
 class TimelineActivity : AppCompatActivity() {
 
@@ -91,7 +92,8 @@ class TimelineActivity : AppCompatActivity() {
         if (item?.itemId == R.id.compose) {
             // navigate to compose screen
             val intent = Intent(this, ComposeActivity::class.java)
-            startActivity(intent)
+            // startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE)  // start the activity, but return a result
         }
         return super.onOptionsItemSelected(item)
     }
