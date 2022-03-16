@@ -43,7 +43,7 @@ GIF created with [Peek](https://github.com/phw/peek).
 ## Notes
 
 Describe any challenges encountered while building the app.
-  1. The 15 requests per 15 minutes made development a little slow.
+  1. Still, the 15 requests per 15 minutes makes development a little slow.
 
 ## Open-source libraries used
 
