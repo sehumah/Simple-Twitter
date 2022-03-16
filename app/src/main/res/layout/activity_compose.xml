@@ -6,4 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ComposeActivity">
 
+    <EditText
+        android:id="@+id/et_tweet_composer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="What's popping?"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_tweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tweet"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_tweet_composer" />
 </androidx.constraintlayout.widget.ConstraintLayout>
