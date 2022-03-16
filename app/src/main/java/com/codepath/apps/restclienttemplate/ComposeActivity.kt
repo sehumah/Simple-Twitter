@@ -61,6 +61,7 @@ class ComposeActivity : AppCompatActivity() {
                         setResult(RESULT_OK, intent)  // set the result to say whether things are okay or not
                         finish()  // close the ComposeActivity so that we end up back in the TimelineActivity
 
+
                         Log.i(TAG, "Successfully published tweet!")
                     }
 
