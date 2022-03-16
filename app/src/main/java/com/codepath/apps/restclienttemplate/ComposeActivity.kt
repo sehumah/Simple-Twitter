@@ -2,16 +2,24 @@ package com.codepath.apps.restclienttemplate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.codepath.apps.restclienttemplate.models.Tweet
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import okhttp3.Headers
 
+
+private const val TAG = "ComposeActivity"
 class ComposeActivity : AppCompatActivity() {
 
-    // grab references to the button and edit text
+    // grab references to the button & edit text
     private lateinit var btnTweet: Button
     private lateinit var etComposeTweet: EditText
+
+    // define variable for the twitter client
+    private lateinit var client: TwitterClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +28,9 @@ class ComposeActivity : AppCompatActivity() {
         // grab the views
         btnTweet = findViewById(R.id.btn_tweet)
         etComposeTweet = findViewById(R.id.et_compose_tweet)
+
+        // initialize the client
+        client = TwitterApplication.getRestClient(this)
 
         // handle user's click on tweet button
         btnTweet.setOnClickListener {
@@ -37,8 +48,19 @@ class ComposeActivity : AppCompatActivity() {
                 // look into displaying a SnackBar message
             }
             else {
-                Toast.makeText(this, tweetText, Toast.LENGTH_SHORT).show()
-                // TODO: make an API call to twitter to publish the tweet
+                // Toast.makeText(this, tweetText, Toast.LENGTH_SHORT).show()
+                // make an API call to twitter to publish the tweet
+                client.publishTweetToTimeline(tweetText, object: JsonHttpResponseHandler() {
+                    override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                        // TODO: "send the tweet back to TimelineActivity to show it on the timeline"
+                        val tweet = Tweet.fromJSONArray(json.jsonArray)
+                        Log.i(TAG, "Successfully published tweet!")
+                    }
+
+                    override fun onFailure(statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?) {
+                        Log.e(TAG, "Error publishing tweet to timeline! statusCode: $statusCode")
+                    }
+                })
             }
         }
     }
