@@ -57,7 +57,7 @@ class ComposeActivity : AppCompatActivity() {
                         val tweet = Tweet.parseJSON(json.jsonObject)
                         // parse the tweet to TimelineActivity
                         val intent = Intent()
-                        intent.putExtra("tweet", tweet)
+                        intent.putExtra("tweet", tweet)  // key="tweet" for when user returns to TimelineActivity, value=tweet
                         setResult(RESULT_OK, intent)  // set the result to say whether things are okay or not
                         finish()  // close the ComposeActivity so that we end up back in the TimelineActivity
 
