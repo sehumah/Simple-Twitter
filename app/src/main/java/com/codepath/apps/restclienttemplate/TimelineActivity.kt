@@ -12,6 +12,8 @@ import com.github.scribejava.apis.TwitterApi
 import okhttp3.Headers
 import org.json.JSONException
 import EndlessRecyclerViewScrollListener
+import android.view.Menu
+import android.view.MenuItem
 
 
 private const val TAG = "TimelineActivity"
@@ -71,6 +73,20 @@ class TimelineActivity : AppCompatActivity() {
         }
         rvTweets.addOnScrollListener(scrollListener)  // add scroll listener to RecyclerView
         populateHomeTimeline()  // call populate home timeline after everything's been initialized
+    }
+
+
+    /* Override 2 methods to allow tweet composing */
+
+    // inflate the menu resource file we wanna use
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)  // inflate the right resource file
+        return true  // inflate and show the menu
+    }
+
+    // handles clicks on menu item
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
 
