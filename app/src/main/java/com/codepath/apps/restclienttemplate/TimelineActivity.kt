@@ -12,6 +12,7 @@ import com.github.scribejava.apis.TwitterApi
 import okhttp3.Headers
 import org.json.JSONException
 import EndlessRecyclerViewScrollListener
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -88,7 +89,9 @@ class TimelineActivity : AppCompatActivity() {
     // handles clicks on menu item
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.compose) {
-            Toast.makeText(this, "Compose Button Clicked!", Toast.LENGTH_SHORT).show()
+            // navigate to compose screen
+            val intent = Intent(this, ComposeActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
