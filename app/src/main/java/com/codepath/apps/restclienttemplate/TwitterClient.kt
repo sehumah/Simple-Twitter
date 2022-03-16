@@ -51,6 +51,7 @@ class TwitterClient(context: Context) : OAuthBaseClient(
     }
 
     /* DEFINE METHODS for different API endpoints here */
+
     // define method to get the initial home timeline
     fun getHomeTimeline(handler: JsonHttpResponseHandler) {
         val apiUrl = getApiUrl(apiURLPath)
@@ -69,6 +70,15 @@ class TwitterClient(context: Context) : OAuthBaseClient(
         params.put("count", 25)
         params.put("max_id", maxId)
         client.get(apiURL, params, handler)
+    }
+
+    // make API request to Twitter to post composed tweet
+    fun publishTweetToTimeline (tweetToPublish: String, handler: JsonHttpResponseHandler) {
+        val apiEndpoint = "statuses/update.json"
+        val apiURL = getApiUrl(apiEndpoint)
+        val params = RequestParams()
+        params.put("status", tweetToPublish)
+        client.post(apiURL, params, "", handler)
     }
 
     /* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
