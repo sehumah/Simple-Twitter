@@ -1,23 +1,30 @@
 package com.codepath.apps.restclienttemplate
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.codepath.apps.restclienttemplate.models.Tweet
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 
 
 private const val TAG = "ComposeActivity"
+private const val MAXIMUM_TWEET_CHARACTERS = 280
 class ComposeActivity : AppCompatActivity() {
 
     // grab references to the button & edit text
     private lateinit var btnTweet: Button
     private lateinit var etComposeTweet: EditText
+    private lateinit var tvCharacterCount: TextView
 
     // define variable for the twitter client
     private lateinit var client: TwitterClient
@@ -29,6 +36,7 @@ class ComposeActivity : AppCompatActivity() {
         // grab the views
         btnTweet = findViewById(R.id.btn_tweet)
         etComposeTweet = findViewById(R.id.et_compose_tweet)
+        tvCharacterCount = findViewById(R.id.tv_character_count)
 
         // initialize the client
         client = TwitterApplication.getRestClient(this)
@@ -36,16 +44,13 @@ class ComposeActivity : AppCompatActivity() {
         // handle user's click on tweet button
         btnTweet.setOnClickListener {
             val tweetText = etComposeTweet.text.toString()  // grab the content of the etComposeTweet
-
             // 1. ensure the tweet isn't empty
             if (tweetText.isEmpty()) {
                 Toast.makeText(this, "Tweet is empty!", Toast.LENGTH_SHORT).show()
-                btnTweet.isActivated = false
             }
             // 2. ensure that the tweet meets Twitter's required character count
-            else if (tweetText.count() > 140) {
-                Toast.makeText(this, "Tweet is too long! Limit is 140 characters!", Toast.LENGTH_SHORT).show()
-                btnTweet.isActivated = false
+            else if (tweetText.count() > MAXIMUM_TWEET_CHARACTERS) {
+                Toast.makeText(this, "Tweet is too long! Only ${MAXIMUM_TWEET_CHARACTERS} characters allowed!", Toast.LENGTH_SHORT).show()
                 // look into displaying a SnackBar message
             }
             else {
@@ -70,5 +75,29 @@ class ComposeActivity : AppCompatActivity() {
                 })
             }
         }
+
+        etComposeTweet.addTextChangedListener (object : TextWatcher {
+
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                // Fires right as the text is being changed (even supplies the range of text)
+                tvCharacterCount.text = "${etComposeTweet.length().toString()}/280"
+
+                if (etComposeTweet.length() == 0 || etComposeTweet.length() > MAXIMUM_TWEET_CHARACTERS) {
+                    tvCharacterCount.setTextColor(Color.RED)
+                }
+                else {
+                    tvCharacterCount.setTextColor(Color.GREEN)
+                }
+            }
+
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+                // Fires right before text is changing
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                // Fires right after the text has changed
+            }
+
+        })
     }
 }
