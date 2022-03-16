@@ -36,7 +36,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='part 2 walkthrough' title='Part 2 Video Walkthrough' width='250' alt='Video Walkthrough' />
+<img src='part 2 walkthrough.gif' title='Part 2 Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 GIF created with [Peek](https://github.com/phw/peek).
 
