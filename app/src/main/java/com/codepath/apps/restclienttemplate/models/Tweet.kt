@@ -13,7 +13,7 @@ class Tweet {
     var user: User? = null  // user who created the tweet
 
     companion object {
-        private fun parseJSON (jsonObject: JSONObject) : Tweet {
+        fun parseJSON (jsonObject: JSONObject) : Tweet {
             val tweet = Tweet()
             tweet.tweetId = jsonObject.getString("id_str")
             tweet.createdAt = jsonObject.getString("created_at")
