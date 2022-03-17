@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.codepath.apps.restclienttemplate.models.Tweet
 
 
 private const val TAG = "TweetsAdapter"
+private const val TWEET_EXTRA = "TWEET_EXTRA"
 /* turn tweets objects to something that the Recycler view can display */
 class TweetsAdapter (private val context: Context, private val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>() {
 
@@ -33,8 +35,14 @@ class TweetsAdapter (private val context: Context, private val tweets: ArrayList
         }
 
         override fun onClick(view: View?) {
-            val tweet = tweets[absoluteAdapterPosition]  // the tweet that was tapped/touched
+            // 1. notify with tweet owner's username that tweet was clicked
+            val tweet = tweets[adapterPosition]  // the tweet that was tapped/touched
             Toast.makeText(context, tweet.user?.name, Toast.LENGTH_SHORT).show()  // notify that tweet was touched
+
+            // 2. use intent to navigate to detail activity
+            val intent = Intent(context, TweetDetailActivity::class.java)
+            intent.putExtra(TWEET_EXTRA, tweet)
+            context.startActivity(intent)
             Log.i(TAG, "in TweetAdapter's inner class.onClick. adapterPosition: $adapterPosition, layoutPosition: $layoutPosition, bindingAdapterPosition: $bindingAdapterPosition")
         }
     }
