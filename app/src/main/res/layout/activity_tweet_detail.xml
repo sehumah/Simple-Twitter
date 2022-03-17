@@ -19,7 +19,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="username"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_image"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +30,9 @@
         android:id="@+id/tv_screen_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="screen name"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_image"
         app:layout_constraintTop_toBottomOf="@+id/tv_username" />
@@ -200,7 +205,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="70dp"
         android:layout_marginEnd="0dp"
         app:layout_constraintStart_toEndOf="@+id/iv_favorite_icon"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
