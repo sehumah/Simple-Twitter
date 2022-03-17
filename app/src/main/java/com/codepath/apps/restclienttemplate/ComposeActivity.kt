@@ -21,7 +21,7 @@ private const val TAG = "ComposeActivity"
 private const val MAXIMUM_TWEET_CHARACTERS = 280
 class ComposeActivity : AppCompatActivity() {
 
-    // grab references to the button & edit text
+    // grab references to the compose activity views
     private lateinit var btnTweet: Button
     private lateinit var etComposeTweet: EditText
     private lateinit var tvCharacterCount: TextView
@@ -54,7 +54,6 @@ class ComposeActivity : AppCompatActivity() {
                 // look into displaying a SnackBar message
             }
             else {
-                // Toast.makeText(this, tweetText, Toast.LENGTH_SHORT).show()
                 // make an API call to twitter to publish the tweet
                 client.publishTweetToTimeline(tweetText, object: JsonHttpResponseHandler() {
                     override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
@@ -77,9 +76,9 @@ class ComposeActivity : AppCompatActivity() {
         }
 
         etComposeTweet.addTextChangedListener (object : TextWatcher {
-
+            // Fires right as the text is being changed (even supplies the range of text)
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
-                // Fires right as the text is being changed (even supplies the range of text)
+
                 tvCharacterCount.text = "${etComposeTweet.length().toString()}/280"
 
                 if (etComposeTweet.length() == 0 || etComposeTweet.length() > MAXIMUM_TWEET_CHARACTERS) {
@@ -89,15 +88,11 @@ class ComposeActivity : AppCompatActivity() {
                     tvCharacterCount.setTextColor(Color.GREEN)
                 }
             }
+            // Fires right before text is changing
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {  }
 
-            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
-                // Fires right before text is changing
-            }
-
-            override fun afterTextChanged(editable: Editable?) {
-                // Fires right after the text has changed
-            }
-
+            // Fires right after the text has changed
+            override fun afterTextChanged(editable: Editable?) {  }
         })
     }
 }
