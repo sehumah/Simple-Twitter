@@ -56,6 +56,6 @@ class TweetDetailActivity : AppCompatActivity() {
         tvFavoriteCount.text = tweet.favoritesCount.toString()
 
         // log to check that this code is being reached
-        Log.i(TAG, "in TweetDetailActivity's override()")
+        Log.i(TAG, "in TweetDetailActivity's override(). tweet contents: ${tweet::class.qualifiedName}")
     }
 }
