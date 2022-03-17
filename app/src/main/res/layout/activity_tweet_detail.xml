@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_screen_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="screen name"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+    <TextView
+        android:id="@+id/tv_tweet_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is a really really really really really long sample tweet text or tweet body."
+        android:layout_margin="10dp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_image" />
+
+    <TextView
+        android:id="@+id/tv_tweet_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tweet_body" />
+
+    <TextView
+        android:id="@+id/tv_tweet_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="03/16/2022"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_tweet_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tweet_body" />
+
+    <TextView
+        android:id="@+id/tv_tweet_trademark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple-Twitter by Stephen"
+        android:textColor="@color/twitter_blue"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_tweet_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tweet_body" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_margin="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tweet_trademark" />
+
+    <TextView
+        android:id="@+id/tv_retweet_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tv_retweets_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retweets"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_retweet_count"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tv_quote_tweet_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_retweets_text"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tv_quote_tweets_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quote Tweets"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_quote_tweet_count"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tv_favorite_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="30dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/tv_quote_tweets_text"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tv_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Likes"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_favorite_count"
+        app:layout_constraintTop_toTopOf="@+id/divider" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_margin="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/tv_quote_tweets_text"
+        tools:layout_editor_absoluteX="-25dp" />
+
+    <ImageView
+        android:id="@+id/iv_reply_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/ic_fas_reply" />
+
+    <ImageView
+        android:id="@+id/iv_retweet_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_reply_icon"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/ic_fas_retweet" />
+
+    <ImageView
+        android:id="@+id/iv_favorite_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_retweet_icon"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/ic_fas_heart" />
+
+    <ImageView
+        android:id="@+id/iv_share_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_favorite_icon"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/ic_fas_share_alt" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_margin="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/iv_retweet_icon"
+        tools:layout_editor_absoluteX="-34dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
