@@ -79,7 +79,7 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:layout_margin="10dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +158,7 @@
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:layout_margin="10dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintTop_toBottomOf="@+id/tv_quote_tweets_text"
@@ -214,7 +214,7 @@
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:layout_margin="10dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintTop_toBottomOf="@+id/iv_retweet_icon" />
