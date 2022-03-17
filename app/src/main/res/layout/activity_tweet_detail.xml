@@ -41,7 +41,7 @@
         android:id="@+id/tv_tweet_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This is a really really really really really long sample tweet text or tweet body."
+        android:text="This is a really really really really really long sample tweet text or tweet body that says that the quick brown fox jumped over the lazy dogs."
         android:layout_margin="10dp"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintEnd_toEndOf="parent"
