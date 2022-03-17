@@ -43,7 +43,7 @@ class TweetsAdapter (private val context: Context, private val tweets: ArrayList
             val intent = Intent(context, TweetDetailActivity::class.java)
             intent.putExtra(TWEET_EXTRA, tweet)
             context.startActivity(intent)
-            Log.i(TAG, "in TweetAdapter's inner class.onClick. adapterPosition: $adapterPosition, layoutPosition: $layoutPosition, bindingAdapterPosition: $bindingAdapterPosition")
+            Log.i(TAG, "click detected in TweetAdapter's onClick. adapterPosition: $adapterPosition")
         }
     }
 
