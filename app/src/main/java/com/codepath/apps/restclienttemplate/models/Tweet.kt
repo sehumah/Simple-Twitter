@@ -41,4 +41,8 @@ class Tweet (
         // String formattedTime = TimeFormatter.getTimeDifference(String dateString);  // returns date & time
         return TimeFormatter.getTimeDifference(createdAt)  // only returns time since tweet was tweeted
     }
+
+    fun getTimeStamp () : String {
+        return TimeFormatter.getTimeStamp(createdAt)
+    }
 }
