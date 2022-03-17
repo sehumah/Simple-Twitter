@@ -24,7 +24,7 @@
         android:id="@+id/tv_character_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="0/280"
         android:layout_margin="20dp"
         app:layout_constraintEnd_toStartOf="@+id/btn_tweet"
         app:layout_constraintTop_toBottomOf="@+id/et_compose_tweet" />
