@@ -8,7 +8,7 @@ import androidx.core.view.ViewCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton.OnVisibilityChangedListener
 
-class ScrollAwareFABBehavior : FloatingActionButton.Behavior() {
+class ScrollAwareFABBehavior (context: Context, attributeSet: AttributeSet) : FloatingActionButton.Behavior () {
 
     // extend FloatingActionButton.Behavior to signal that we wish to handle scroll events in the vertical direction
     override fun onStartNestedScroll (
