@@ -23,17 +23,17 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/compose"
+        android:id="@+id/fab_compose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_menu_edit"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:contentDescription="floating compose tweet icon"
         app:layout_anchor="@id/rv_tweets"
         app:layout_anchorGravity="bottom|right|end"
         app:fabSize="normal"
         app:backgroundTint="@color/twitter_blue"
-        android:contentDescription="floating compose tweet icon"
         app:layout_behavior="com.codepath.apps.restclienttemplate.ScrollAwareFABBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
