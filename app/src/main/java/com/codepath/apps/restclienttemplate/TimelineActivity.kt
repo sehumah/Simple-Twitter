@@ -12,10 +12,13 @@ import com.github.scribejava.apis.TwitterApi
 import okhttp3.Headers
 import org.json.JSONException
 import EndlessRecyclerViewScrollListener
+import android.content.Context
 import android.content.Intent
-import android.view.Menu
-import android.view.MenuItem
+import android.util.AttributeSet
+import android.view.*
 import android.widget.Toast
+import androidx.core.app.TaskStackBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 private const val TAG = "TimelineActivity"
@@ -55,7 +58,7 @@ class TimelineActivity : AppCompatActivity() {
             android.R.color.holo_green_light,
             android.R.color.holo_orange_light,
             android.R.color.holo_red_light
-        );
+        )
 
         rvTweets = findViewById(R.id.rv_tweets)  // get the RecyclerView
         adapter = TweetsAdapter(this, tweets)  // initialize adapter
@@ -76,6 +79,7 @@ class TimelineActivity : AppCompatActivity() {
         }
         rvTweets.addOnScrollListener(scrollListener)  // add scroll listener to RecyclerView
         populateHomeTimeline()  // call populate home timeline after everything's been initialized
+        onFloatingActionButtonClicked()
     }
 
 
@@ -98,6 +102,19 @@ class TimelineActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun onFloatingActionButtonClicked () {
+        val floatingActionButton = findViewById<FloatingActionButton>(R.id.fab_compose)
+        if (floatingActionButton == null) {
+            Log.e(TAG, "floatingActionButton is null!")
+        }
+        else {
+            floatingActionButton.setOnClickListener {
+                Toast.makeText(this, "FAB Clicked!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     // this method is then called when the user returns from ComposeActivity screen
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
@@ -111,6 +128,7 @@ class TimelineActivity : AppCompatActivity() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
 
     // define function to populate the timeline
     private fun populateHomeTimeline() {
@@ -127,7 +145,6 @@ class TimelineActivity : AppCompatActivity() {
                     swipeContainer.setRefreshing(false)  // Now we call setRefreshing(false) to signal refresh has finished so it stops showing the refreshing icon
 
                     /*** Start of testing ***/
-                    // TODO: store the currentMaxId and somehow get it to getNextBatchOfTweets() inside onLoadMore()
                      currentMaxId = listOfTweetsRetrieved[listOfTweetsRetrieved.size-1].tweetId
                      Log.i(TAG, "inside getHomeTimeline.onSuccess. currentMaxId is: $currentMaxId")
                     /*** End of testing ***/
