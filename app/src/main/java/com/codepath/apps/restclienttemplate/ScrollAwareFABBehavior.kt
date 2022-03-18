@@ -26,7 +26,6 @@ class ScrollAwareFABBehavior (context: Context, attributeSet: AttributeSet) : Fl
                 )
     }
 
-
     // check the Y position and determine whether to animate the button in or out
     override fun onNestedScroll(
         coordinatorLayout: CoordinatorLayout,
