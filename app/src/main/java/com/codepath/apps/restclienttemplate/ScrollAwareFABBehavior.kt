@@ -6,7 +6,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 
 class ScrollAwareFABBehavior : FloatingActionButton.Behavior() {
-    override fun onStartNestedScroll(
+    override fun onStartNestedScroll (
         coordinatorLayout: CoordinatorLayout,
         child: FloatingActionButton,
         directTargetChild: View,
