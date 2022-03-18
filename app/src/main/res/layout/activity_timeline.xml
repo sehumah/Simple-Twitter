@@ -33,6 +33,6 @@
         app:layout_anchorGravity="bottom|right|end"
         app:fabSize="normal"
         android:contentDescription="floating compose tweet icon"
-        app:layout_behavior="ScrollAwareFABBehavior" />
+        app:layout_behavior="com.codepath.apps.restclienttemplate.ScrollAwareFABBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
