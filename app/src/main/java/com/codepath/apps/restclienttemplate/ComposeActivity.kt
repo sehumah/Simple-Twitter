@@ -84,11 +84,11 @@ class ComposeActivity : AppCompatActivity() {
 
                 if (etComposeTweet.length() == 0 || etComposeTweet.length() > MAXIMUM_TWEET_CHARACTERS) {
                     tvCharacterCount.setTextColor(Color.RED)
-                    btnTweet.isInvisible = true
+                    // btnTweet.isInvisible = true
                 }
                 else {
                     tvCharacterCount.setTextColor(Color.GREEN)
-                    btnTweet.isInvisible = false
+                    // btnTweet.isInvisible = false
                 }
             }
             // Fires right before text is changing
