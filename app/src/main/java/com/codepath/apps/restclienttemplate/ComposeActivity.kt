@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.core.widget.addTextChangedListener
 import com.codepath.apps.restclienttemplate.models.Tweet
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
@@ -83,9 +84,11 @@ class ComposeActivity : AppCompatActivity() {
 
                 if (etComposeTweet.length() == 0 || etComposeTweet.length() > MAXIMUM_TWEET_CHARACTERS) {
                     tvCharacterCount.setTextColor(Color.RED)
+                    btnTweet.isInvisible = true
                 }
                 else {
                     tvCharacterCount.setTextColor(Color.GREEN)
+                    btnTweet.isInvisible = false
                 }
             }
             // Fires right before text is changing
