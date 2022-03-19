@@ -7,5 +7,4 @@
         android:icon="@drawable/ic_menu_edit"
         app:showAsAction="always"
         android:title="Compose" />
-
 </menu>
