@@ -79,7 +79,7 @@ class TimelineActivity : AppCompatActivity() {
         }
         rvTweets.addOnScrollListener(scrollListener)  // add scroll listener to RecyclerView
         populateHomeTimeline()  // call populate home timeline after everything's been initialized
-        // onFloatingActionButtonClicked()
+        onFloatingActionButtonClicked()
     }
 
 
