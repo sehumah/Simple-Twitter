@@ -109,7 +109,9 @@ class TimelineActivity : AppCompatActivity() {
         }
         else {
             floatingActionButton.setOnClickListener {
-                Toast.makeText(this, "FAB Clicked!", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this, "FAB Clicked!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ComposeActivity::class.java)
+                startActivityForResult(intent, REQUEST_CODE)
             }
         }
     }
