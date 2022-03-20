@@ -91,7 +91,8 @@ class TimelineActivity : AppCompatActivity() {
         return true  // inflate and show the menu
     }
 
-    // handles clicks on menu item
+    // handles clicks on menu item - the compose button. Uncomment this block and compose button item in xml to display compose button in the menu bar
+    /*
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.compose) {
             // navigate to compose screen
@@ -101,7 +102,7 @@ class TimelineActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
+    */
     private fun onFloatingActionButtonClicked () {
         val floatingActionButton = findViewById<FloatingActionButton>(R.id.fab_compose)
         if (floatingActionButton == null) {
