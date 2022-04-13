@@ -23,7 +23,7 @@ The following **optional** features are implemented:
 - [x] The "Compose" action is moved to a FloatingActionButton instead of on the AppBar
 - [ ] Compose tweet functionality is build using modal overlay
 - [x] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.org/android/Using-Parceler).
-- [ ] User can **open the twitter app offline and see last loaded tweets**. Persisted in SQLite tweets are refreshed on every application launch. While "live data" is displayed when app can get it from Twitter API, it is also saved for use in offline mode. Resource Video here: [Twitter 2: Episode 4 (Stretch) - Persistence](https://www.youtube.com/watch?v=qzg9tT03ukE&list=PLrT2tZ9JRrf6keV69n7hsy2VCaqQ4LWsf&index=21)
+- [ ] User can **open the twitter app offline and see last loaded tweets**. Persisted in SQLite tweets are refreshed on every application launch. While "live data" is displayed when app can get it from Twitter API, it is also saved for use in offline mode. Resources here: [Twitter Persistence With Room](https://guides.codepath.org/android/Twitter-Persistence-With-Room) & [Twitter 2: Episode 4 (Stretch) - Persistence](https://www.youtube.com/watch?v=qzg9tT03ukE&list=PLrT2tZ9JRrf6keV69n7hsy2VCaqQ4LWsf&index=21)
 - [ ] When a user leaves the compose view without publishing and there is existing text, prompt to save or delete the draft. If saved, the draft should then be **persisted to disk** and can later be resumed from the compose view.
 - [ ] Enable your app to receive implicit intents from other apps. When a link is shared from a web browser, it should pre-fill the text and title of the web page when composing a tweet.
 
@@ -68,7 +68,7 @@ Describe any challenges encountered while building the app.
 
 ----------------------------------------------------------------------------------------------------
 
-# Project 2 - *Simple-Twitter*
+# Project 2 - *Simple-Twitter Part 1*
 
 **Simple-Twitter** is an android app that allows a user to view his Twitter timeline. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
